@@ -9,26 +9,38 @@
  *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
  * };
  */
-//Iterative Solution -> Left-Root-Right
+//Morris Traversal ->Left-Root-Right
 class Solution {
 public:
     vector<int> inorderTraversal(TreeNode* root) {
         vector<int> ans;
-        stack<TreeNode*> st;
-        if(root==NULL) return ans;
-        TreeNode* node=root;
-        while(1){
-            if(node!=NULL){
-                st.push(node);
-                node=node->left;
+        TreeNode* curr=root;
+        //until curr becomes null traverse
+        while(curr!=NULL){
+            //if curr->left is null then push the curr val and goes to curr->right
+            if(curr->left==NULL){
+                ans.push_back(curr->val);
+                curr=curr->right;
             }
             else{
-                if(st.empty()) break;
+                //curr not null
+                TreeNode* temp=curr->left;
+                //goes to the rightmost element in left subtree
+                while(temp->right && temp->right!=curr){
+                    temp=temp->right;
+                }
+                //check if it is null then link it with curr and points curr to curr->left
+                if(temp->right==NULL){
+                    temp->right=curr;
+                    curr=curr->left;
+                }
                 else{
-                    TreeNode* temp=st.top();
-                    ans.push_back(temp->val);
-                    st.pop();
-                    node=temp->right;
+                    //if it is already points to curr break the link
+                    //push the curr->val in ans and goes to right of curr as left subtree
+                    //is already traversed
+                    temp->right=NULL;
+                    ans.push_back(curr->val);
+                    curr=curr->right;
                 }
             }
         }
