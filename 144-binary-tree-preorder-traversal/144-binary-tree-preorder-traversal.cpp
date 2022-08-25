@@ -9,24 +9,40 @@
  *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
  * };
  */
-//Iterative Solution-> Root-Left-Right
+//Morris traversal-> Root-Left-Right
 class Solution {
 public:
     vector<int> preorderTraversal(TreeNode* root) {
         vector<int> ans;
-        stack<TreeNode*> st;
-        if(root==NULL) return ans;
-        st.push(root);
-        while(!st.empty()){
-            //pop the stack top (root)
-            TreeNode* temp=st.top();
-            ans.push_back(temp->val);
-            st.pop();
-            //LIFO so first pushing the right child then left child of the popped node
-            if(temp->right)
-                st.push(temp->right);
-            if(temp->left)
-                st.push(temp->left);
+        TreeNode* curr=root;
+        //until curr exists
+        while(curr!=NULL){
+            //if left subtree does not exist
+            if(curr->left==NULL){
+                //push the root val and goes to right
+                ans.push_back(curr->val);
+                curr=curr->right;
+            }
+            else{
+                //left subtree exists
+                TreeNode* temp=curr->left;
+                //go to the rightmost element on left subtree
+                while(temp->right && temp->right!=curr)
+                    temp=temp->right;
+                //points to null then link it with curr
+                //push the curr val to ans and points curr to left
+                if(temp->right==NULL){
+                    temp->right=curr;
+                    ans.push_back(curr->val);
+                    curr=curr->left;
+                }
+                else{
+                    //already points to curr break the link and point to the right
+                    //as left subtree is already traversed
+                    temp->right=NULL;
+                    curr=curr->right;
+                }
+            }
         }
         return ans;
     }
