@@ -2,20 +2,24 @@ class Solution {
 public:
     //Recursive solution-O(2^N)
     //Memoization- T.C=O(N*target) S.C=O(N*target)+O(target)
-    bool f(int ind,int k,vector<int> &nums,vector<vector<int>> &dp){
-        //base case
-        if(k==0) return true; //target becomes 0
-        if(ind==0) return (nums[0]==k);
-        if(dp[ind][k]!=-1) return dp[ind][k];
-        bool notTake=f(ind-1,k,nums,dp);
-        bool take=false;
-        if(k>=nums[ind])
-            take=f(ind-1,k-nums[ind],nums,dp);
-        return dp[ind][k]=take||notTake;
-    }
+    //Tabulation- T.C=O(N*target) S.C=O(N*target)
+    //Space Optimization T.C=O(N*target) S.C=O(target)
     bool solve(int n,int k,vector<int> &nums){
-        vector<vector<int>> dp(n+1,vector<int>(k+1,-1));
-        return f(n-1,k,nums,dp);
+        vector<bool> prev(k+1,0), curr(k+1,0);
+        //base case
+        prev[0]=curr[0]=true;
+        if(nums[0]<=k) prev[nums[0]]=true;
+        for(int ind=1;ind<n;ind++){
+            for(int j=1;j<=k;j++){
+                bool notTake=prev[j];
+                bool take=false;
+                if(j>=nums[ind])
+                    take=prev[j-nums[ind]];
+                curr[j]=(take)||(notTake);
+            }
+            prev=curr;
+        }
+        return prev[k];
     }
     bool canPartition(vector<int>& nums) {
         int sum=0;
