@@ -1,19 +1,14 @@
 class Solution {
 public:
     vector<int> findClosestElements(vector<int>& arr, int k, int x) {
-        priority_queue<pair<int,int>> pq; //max-heap
+        int l=0,r=arr.size()-1;
+        while(r-l+1>k){
+            if(arr[r]-x >= x-arr[l]) r--;
+            else l++;
+        }
         vector<int> ans;
-        for(int i=0;i<arr.size();i++){
-            pq.push({abs(arr[i]-x),arr[i]});
-        }
-        while(pq.size()!=k){
-            pq.pop();
-        }
-        while(!pq.empty()){
-            ans.push_back(pq.top().second);
-            pq.pop();
-        }
-        sort(ans.begin(),ans.end());
+        for(int i=l;i<=r;i++)
+            ans.push_back(arr[i]);
         return ans;
     }
 };
