@@ -9,24 +9,14 @@ class Solution{
     int maxDistance(int arr[], int n)
     {
         unordered_map<int,int> mp;
+        int ans=0;
         //element to first index mapping
         for(int i=0;i<n;i++){
             if(mp.find(arr[i])!=mp.end()){
-                continue;
+                ans=max(ans,i-mp[arr[i]]);
             }
-            mp[arr[i]]=i;
-        }
-        //element to last occurence
-        unordered_map<int,int> mp1;
-        for(int i=0;i<n;i++){
-            if(mp1.find(arr[i])!=mp1.end()){
-                mp1[arr[i]]=i;
-            }
-            mp1[arr[i]]=i;
-        }
-        int ans=INT_MIN;
-        for(int i=0;i<n;i++){
-            ans=max(ans,mp1[arr[i]]-mp[arr[i]]);
+            else
+                mp[arr[i]]=i; //not always case
         }
         return ans;
     }
