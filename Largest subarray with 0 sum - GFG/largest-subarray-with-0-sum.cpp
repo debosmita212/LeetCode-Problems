@@ -17,12 +17,15 @@ class Solution{
         int maxi=0;
         for(int i=0;i<n;i++){
             sum+=A[i];
+            //if already the sum is 0, that should be longest
             if(sum==0){
                 maxi=i+1;
             }
+            //already prefixSum present, so in between the subarray sum must be 0
             else if(prefSum.find(sum)!=prefSum.end()){
                 maxi=max(maxi,i-prefSum[sum]);
             }
+            //else store the first occurence
             else prefSum[sum]=i;
         }
         return maxi;
