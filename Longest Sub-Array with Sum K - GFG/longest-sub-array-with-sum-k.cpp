@@ -8,26 +8,22 @@ class Solution{
     public:
     int lenOfLongSubarr(int A[],  int N, int K) 
     { 
-        unordered_map<int,int> mp;
-        int ans=0;
         int sum=0;
+        int maxi=0;
+        unordered_map<int,int> mp; //sum till ith index to ith index map
         for(int i=0;i<N;i++){
             sum+=A[i];
-            int diff=sum-K;
-            if(diff==0){
-                //sum==k
-                //store the maximum subarray size
-                ans=max(ans,i+1);
+            if(sum==K){
+                maxi=max(maxi,i+1);
             }
-            if(mp[diff]){
-                //if map stores the diff update the maximum subarray size there
-                ans=max(ans,i-mp[diff]+1);
+            if(mp.find(sum-K)!=mp.end()){
+                maxi=max(maxi,i-mp[sum-K]);
             }
-            if(!mp[sum]){
-                mp[sum]=i+1;
+            if(mp.count(sum)==0){
+                mp[sum]=i;
             }
         }
-        return ans;
+        return maxi;
     } 
 
 };
