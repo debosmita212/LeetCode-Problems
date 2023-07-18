@@ -7,20 +7,23 @@ using namespace std;
 class Solution {
   public:
     void printTriangle(int n) {
-        int cnt=n-1;
-        char c='A';
+        // code here
         for(int i=1;i<=n;i++){
-            for(int j=cnt;j>0;j--){
+            char ch='A';
+            //gap
+            for(int j=i;j<n;j++)
                 cout<<" ";
+            //characters
+            int count=i;
+            while(count){
+                cout<<ch++;
+                count--;
             }
-            cnt--;
-            for(int j=0;j<i;j++){
-                cout<<char(c+j);
-            }
-            if(i>1){
-             for(int k=i-2;k>=0;k--){
-                cout<<char(c+k);
-            }   
+            ch=ch-2;
+            int temp=i-1;
+            while(temp){
+                cout<<ch--;
+                temp--;
             }
             cout<<endl;
         }
