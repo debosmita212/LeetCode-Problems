@@ -7,25 +7,21 @@ using namespace std;
 class Solution {
   public:
     void printTriangle(int n) {
-        //left pattern
+        // left 
         for(int i=1;i<=n;i++){
             //left numbers
-            for(int j=1;j<=i;j++){
-                if(j==i) cout<<j;
-                else cout<<j<<" ";
-            }
-            //space 
-            for(int j=n-1;j>=i;j--)
-                cout<<"  ";
-            //space
-            for(int j=n-1;j>=i;j--)
-                cout<<"  ";
-                //right numbers
+            for(int j=1;j<=i;j++)
+                cout<<j<<" ";
+            //gap
+            for(int j=2*n;j>2*i;j--)
+                cout<<" ";
+            for(int j=2*n;j>2*i;j--)
+                cout<<" ";
+            //right numbers
             for(int j=i;j>=1;j--)
-                cout<<" "<<j;
+                cout<<j<<" ";
             cout<<endl;
         }
-        
     }
 };
 
