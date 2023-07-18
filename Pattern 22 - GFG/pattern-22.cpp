@@ -7,28 +7,27 @@ using namespace std;
 class Solution {
   public:
     void printSquare(int n) {
-        for(int i=n;i>0;i--){
-            for(int j=n;j>0;j--){
+        //upper triangle
+        for(int i=n;i>=1;i--){
+            for(int j=n;j>=1;j--){
                 if(j>i) cout<<j<<" ";
                 else cout<<i<<" ";
             }
-            int j=i;
-            for(int k=2;k<=n;k++){
-                if(j>k) cout<<j<<" ";
-                else cout<<k<<" ";
+            for(int j=2;j<=n;j++){
+                if(j>i) cout<<j<<" ";
+                else cout<<i<<" ";
             }
             cout<<endl;
         }
-        
+        //lower triangle
         for(int i=2;i<=n;i++){
-            for(int j=n;j>0;j--){
+            for(int j=n;j>=1;j--){
                 if(j>i) cout<<j<<" ";
                 else cout<<i<<" ";
             }
-            int j=i;
-            for(int k=2;k<=n;k++){
-                if(j>k) cout<<j<<" ";
-                else cout<<k<<" ";
+            for(int j=2;j<=n;j++){
+                if(j>i) cout<<j<<" ";
+                else cout<<i<<" ";
             }
             cout<<endl;
         }
