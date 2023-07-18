@@ -20,9 +20,18 @@ E D C B A
 
 <p>&nbsp;</p>
 
+<p><span style="font-size:18px"><strong>Example 2:</strong></span></p>
+
+<pre><span style="font-size:18px"><strong>Input</strong>: 3
+
+<strong>Output:</strong>
+C
+C B
+C B A</span></pre>
+
 <p><span style="font-size:18px"><strong>Your Task:</strong></span></p>
 
-<p><span style="font-size:18px">You don't need to input anything. Complete the function <strong>printTriangle()&nbsp;</strong>which takes&nbsp; an integer <strong>n</strong> <strong>&nbsp;</strong>as the input parameter&nbsp;and print the pattern.</span></p>
+<p><span style="font-size:18px">You don't need to input anything. Complete the function <strong>printTriangle()&nbsp;</strong>which takes an integer <strong>n</strong> <strong>&nbsp;</strong>as the input parameter&nbsp;and print the pattern.</span></p>
 
 <p><span style="font-size:18px"><strong>Constraints:</strong></span></p>
 
