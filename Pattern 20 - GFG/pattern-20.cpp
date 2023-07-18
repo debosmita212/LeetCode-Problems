@@ -7,27 +7,33 @@ using namespace std;
 class Solution {
   public:
     void printTriangle(int n) {
-        //upper triangle
-        int sp=n-1;
+        //Upper triangle
         for(int i=1;i<=n;i++){
-            for(int j=0;j<i;j++)
+            //left stars
+            for(int j=1;j<=i;j++)
                 cout<<"*";
-            for(int k=sp;k>0;k--)
-                cout<<"  ";
-            sp--;
-            for(int j=0;j<i;j++)
+            //gap
+            for(int j=i;j<n;j++)
+                cout<<" ";
+            for(int j=i;j<n;j++)
+                cout<<" ";
+            //stars
+            for(int j=1;j<=i;j++)
                 cout<<"*";
             cout<<endl;
         }
         //lower triangle
-        sp=1;
-        for(int i=n-1;i>=1;i--){
-            for(int j=0;j<i;j++)
+        for(int i=1;i<n;i++){
+            //stars
+            for(int j=i;j<n;j++)
                 cout<<"*";
-            for(int k=0;k<sp;k++)
-                cout<<"  ";
-            sp++;
-            for(int j=0;j<i;j++)
+            //gaps
+            for(int j=1;j<=i;j++)
+                cout<<" ";
+            for(int j=1;j<=i;j++)
+                cout<<" ";
+            //stars
+            for(int j=i;j<n;j++)
                 cout<<"*";
             cout<<endl;
         }
