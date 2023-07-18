@@ -7,28 +7,24 @@ using namespace std;
 class Solution {
   public:
     void printDiamond(int n) {
-        int leftSpace=n-1;
-        //upper pattern print
+        // Upper triangle
         for(int i=1;i<=n;i++){
-            //spaces
-            for(int j=leftSpace;j>0;j--)
+            //gaps
+            for(int j=i;j<=n-1;j++)
                 cout<<" ";
-                //stars
-            for(int k=0;k<i;k++)
+            //stars
+            for(int j=1;j<=i;j++)
                 cout<<"* ";
-            leftSpace--;
             cout<<endl;
         }
-        //lower pattern print
-        int sp=0;
+        //Lower triangle
         for(int i=n;i>=1;i--){
-            //spaces
-            for(int j=0;j<sp;j++)
+            //gap
+            for(int j=n;j>i;j--)
                 cout<<" ";
-                //stars
-            for(int k=1;k<=i;k++)
+            //stars
+            for(int j=i;j>=1;j--)
                 cout<<"* ";
-            sp++;
             cout<<endl;
         }
     }
